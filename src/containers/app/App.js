@@ -10,12 +10,12 @@ function App() {
       <header>
         <Header />
       </header>
+      <aside>
+        <Aside />
+      </aside>
       <main>
         <Main />
       </main>
-      <aside>
-       <Aside /> 
-      </aside>
     </div>
   );
 }
