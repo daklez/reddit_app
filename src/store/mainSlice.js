@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { selectSearchTerm } from "./searchTermSlice";
 
 export const loadSubredditPosts = createAsyncThunk(
   "main/loadSubredditPosts",
@@ -54,7 +55,7 @@ const mainSlice = createSlice({
     },
     [loadPostComments.fulfilled]: (state, action) => {
       state.commentsLoading = false;
-      state.postComments = action.payload;
+      state.postComments.push({[action.payload[0].parent_id]: action.payload});
     },
     [loadPostComments.rejected]: (state) => {
       state.commentsLoading = false;
@@ -70,5 +71,10 @@ export const selectPostsLoading = (state) => state.main.postsLoading;
 export const selectPostsFailed = (state) => state.main.postsFailed;
 export const selectCommentsLoading = (state) => state.main.commentsLoading;
 export const selectCommentsFailed = (state) => state.main.comentsFailed;
+export const selectPostFiltered = (state) => {
+  const posts = selectPosts(state);
+  const searchTerm = selectSearchTerm(state)
+  return posts.filter(post => post.title.toLowerCase().includes(searchTerm))
+}
 export const { pickNewSubrreddit } = mainSlice.actions;
 export default mainSlice.reducer;
