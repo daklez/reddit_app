@@ -6,6 +6,7 @@ import {
   selectSubredditsFailed, 
   getSubreddits } from "../store/subredditsSlice";
 import { Subreddit } from "./Subreddit";
+import { pickNewSubrreddit } from "../store/mainSlice";
 
 export const Subreddits = () => {
   const subreddits = useSelector(selectSubreddits);
@@ -16,6 +17,10 @@ export const Subreddits = () => {
   useEffect(() => {
     dispatch(getSubreddits())
   }, [dispatch]);
+
+  const handleClick = ({target}) => {
+    dispatch(pickNewSubrreddit(target.id))
+  }
 
   const handleFailure = () => {
     dispatch(getSubreddits())
@@ -37,7 +42,7 @@ export const Subreddits = () => {
   return (
     <ul>
       {subreddits.map(subreddit => {
-        return <Subreddit url={subreddit.url} name={subreddit.display_name} avatar={subreddit.icon_img} id={subreddit.id}/>
+        return <Subreddit url={subreddit.url} name={subreddit.display_name_prefixed} avatar={subreddit.icon_img} id={subreddit.id} handleClick={handleClick} />
       })}
     </ul>
   )
