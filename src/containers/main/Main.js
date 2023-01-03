@@ -9,6 +9,8 @@ import {
  } from "../../store/mainSlice";
  import { selectSubreddits } from "../../store/subredditsSlice";
 import { Posts } from "../../components/Posts";
+import { SubredditInfo } from "../../components/SubredditInfo";
+import { AboutCommunity } from "../../components/AboutCommunity";
 
 export const Main = () => {
   const dispatch = useDispatch();
@@ -37,17 +39,8 @@ export const Main = () => {
 
   return (
     <div>
-      {currentSubreddit[0] && <div>
-          <img 
-            src={currentSubreddit[0].icon_img || "https://cdn-icons-png.flaticon.com/512/3670/3670226.png"} 
-            alt={currentSubreddit[0].display_name}
-            width={128}
-            height={128}
-          />
-          <h1>{currentSubreddit[0].title}</h1>
-          <p>{currentSubreddit[0].display_name_prefixed}</p>
-        </div>}
-      
+      {currentSubreddit[0] && <SubredditInfo currentSubreddit={currentSubreddit[0]}/>}
+      {currentSubreddit[0] && <AboutCommunity currentSubreddit={currentSubreddit[0]}/>}
       <Posts posts={posts}/>
     </div>
   ) ;
