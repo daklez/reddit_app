@@ -44,11 +44,13 @@ export const AboutCommunity = (props) => {
     }
 
     return (
-        <div>
-            <p>About Community</p>
+        <div id="about-community">
+            <p className="bold-text">About Community</p>
+            <hr/>
             <p>{currentSubreddit.public_description}</p>
-            <p>Created {formatMonth(created.getUTCMonth() + 1)} {created.getUTCDate()}, {created.getUTCFullYear()}</p>
-            <p>{formatSubscribers(currentSubreddit.subscribers)}<br/>Subscribers</p>
+            <p id="community-created"><span className="material-symbols-outlined">overview</span><span className="gray-text">Created {formatMonth(created.getUTCMonth() + 1)} {created.getUTCDate()}, {created.getUTCFullYear()}</span></p>
+            <hr/>
+            <p><span className="bold-text">{formatSubscribers(currentSubreddit.subscribers)}</span><br/><span className="gray-text">Subscribers</span></p>
         </div>
     )
 
