@@ -1,7 +1,7 @@
 import React from "react";
 import { LoadingAboutCommunity } from "./LoadingAboutCommunity";
 import { LoadingPost } from "./LoadingPost";
-import { LoadingSubredditInfo } from "./LoadingSubredditinfo";
+import { LoadingSubredditInfo } from "./LoadingSubredditInfo";
 
 export const LoadingSubreddit = () => {
     return (
