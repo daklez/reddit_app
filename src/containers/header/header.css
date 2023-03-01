@@ -2,4 +2,98 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
+#header form {
+  width: 100%;
+}
+
+#header input {
+  margin-right: 1rem;
+  border: none;
+  background-color: rgb(237, 235, 235);
+  width: 100%;
+  height: 100%;
+}
+
+#searchbar-container {
+  display:flex;
+  border-radius: 20px;
+  border: 1px solid gray;
+  background-color: rgb(237, 235, 235);
+  border: none;
+  padding: 0.5rem;
+  color: gray;
+  margin-right: 2rem;
+  width: 20%;
+  transition: width 0.4s ease;
+}
+
+#searchbar-container:hover {
+  width: 40%;
+}
+
+#logo-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+#header img {
+  width: 14rem;
+  
+}
+
+#header-subreddits-icon{
+  display: none;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+#header-subreddits {
+  position: fixed;
+  top: 6rem;
+  left: 5rem;
+  background-color: white;
+  height: 200px;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+#header-subreddits li {
+  list-style: none;
+  padding: 3px 0;
+}
+
+#header-subreddits img {
+  max-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  
+}
+
+#header input:focus {
+  outline: none;
+  background-color: white;
+  border-radius: 0 20px 20px 0 ;
+}
+
+@media only screen and (max-width: 1000px){
+  #header-subreddits-icon{
+    display: block;
+  }
+
+  #header {
+    justify-content: space-around;
+  }
+
+  #header img {
+    width: 5rem;
+  }
+}
+
+
+
