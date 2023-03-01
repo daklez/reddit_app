@@ -16,12 +16,21 @@ export const SearchBar = () => {
   }
 
   return (
-    <form>
-      <input 
-        type='text'
-        value={searchTerm}
-        onChange={handleChange}
-      />
-    </form>
+    
+      <div id="searchbar-container">
+        <span className="material-symbols-outlined">
+        search
+        </span>
+        <form>
+        <input 
+          type='text'
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder='Search Post'
+        />
+        </form>
+      </div>
+      
+    
   )
 }
