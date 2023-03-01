@@ -3,7 +3,7 @@ import { Post } from "./Post";
 
 export const Posts = (props) => {
   const { posts } = props;
-  return posts.map((post) => (
-    <Post post={post}/>
+  return posts.map((post, index) => (
+    <Post post={post} index={index}/>
   ));
 };
