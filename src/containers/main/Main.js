@@ -1,3 +1,4 @@
+import './Main.css';
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
@@ -5,27 +6,32 @@ import {
   selectPostsLoading,
   selectPostsFailed,
   loadSubredditPosts,
-  selectPostFiltered
+  pickNewSubrreddit
  } from "../../store/mainSlice";
- import { selectSubreddits } from "../../store/subredditsSlice";
-import { Posts } from "../../components/Posts";
-import { SubredditInfo } from "../../components/SubredditInfo";
-import { AboutCommunity } from "../../components/AboutCommunity";
+import { LoadingSubreddit } from '../../components/LoadingSubreddit';
+import { CurrentSubreddit } from '../../components/CurrentSubreddit';
+import { Route, useLocation } from 'react-router-dom';
+
 
 export const Main = () => {
   const dispatch = useDispatch();
   const pickedSubreddit = useSelector(selectPickedSubreddit);
-  const posts = useSelector(selectPostFiltered);
   const postsLoading = useSelector(selectPostsLoading);
   const postsFailed = useSelector(selectPostsFailed);
-  const currentSubreddit = useSelector(selectSubreddits).filter(subreddit => subreddit.url === pickedSubreddit);
+  const location = useLocation()
 
   useEffect(() => {
-    dispatch(loadSubredditPosts(pickedSubreddit));
-  }, [pickedSubreddit, dispatch])
+    if(location.pathname[location.pathname.length-1] !== '/'){
+      location.pathname = location.pathname + '/';
+    }
+    dispatch(loadSubredditPosts(location.pathname));
+    dispatch(pickNewSubrreddit(location.pathname))
+  }, [pickedSubreddit, dispatch, location])
+
+  
 
   if(postsLoading){
-    return <p>Loading posts...</p>
+    return <LoadingSubreddit />
   }
 
   if(postsFailed){
@@ -37,11 +43,8 @@ export const Main = () => {
     )
   }
 
-  return (
-    <div>
-      {currentSubreddit[0] && <SubredditInfo currentSubreddit={currentSubreddit[0]}/>}
-      {currentSubreddit[0] && <AboutCommunity currentSubreddit={currentSubreddit[0]}/>}
-      <Posts posts={posts}/>
-    </div>
-  ) ;
+  return  (
+    <Route path={location.pathname} component={CurrentSubreddit} />
+    
+  );
 };
