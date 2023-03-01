@@ -23,6 +23,7 @@ const mainSlice = createSlice({
   name: "main",
   initialState: {
     pickedSubreddit: "/r/pics/",
+    showComments: false,
     posts: [],
     postComments: [],
     postsLoading: false,
@@ -34,7 +35,14 @@ const mainSlice = createSlice({
     pickNewSubrreddit: (state, action) => {
       state.pickedSubreddit = action.payload;
       state.postComments = [];
+      state.showComments = false;
     },
+    toggleComments: (state) => {
+      state.showComments = !state.showComments;
+      if(state.postComments){
+        state.postComments = [];
+      }
+    }
   },
   extraReducers: {
     [loadSubredditPosts.pending]: (state) => {
@@ -71,10 +79,11 @@ export const selectPostsLoading = (state) => state.main.postsLoading;
 export const selectPostsFailed = (state) => state.main.postsFailed;
 export const selectCommentsLoading = (state) => state.main.commentsLoading;
 export const selectCommentsFailed = (state) => state.main.comentsFailed;
+export const selectShowComments = state => state.main.showComments;
 export const selectPostFiltered = (state) => {
   const posts = selectPosts(state);
   const searchTerm = selectSearchTerm(state)
   return posts.filter(post => post.title.toLowerCase().includes(searchTerm))
 }
-export const { pickNewSubrreddit } = mainSlice.actions;
+export const { pickNewSubrreddit, toggleComments } = mainSlice.actions;
 export default mainSlice.reducer;
