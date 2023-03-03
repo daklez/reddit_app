@@ -74,7 +74,7 @@
 
 .post {
     display: flex;
-    
+    max-width: 95%;
 }
 
 .post-votes {
@@ -111,7 +111,7 @@
 
 .post-content img,
 .post-content video {
-    width: 100%;
+    min-width: 95%;
     height: auto;
 }
 
@@ -199,14 +199,27 @@
     .post-container{
         width: 90%;
     }
+    .post {
+        max-width: 97%;
+    }
     
   }
 
-  @media only screen and (max-width: 300px){
+  @media only screen and (max-width: 600px){
+    .post {
+        max-width: 95%;
+    }
+  }
+
+  @media only screen and (max-width: 400px){
     main{
       left: 0;
       margin-top: 20%;
       max-width: 100%;
     } 
+
+    .post {
+        max-width: 80%;
+    }
   }
 

@@ -95,5 +95,17 @@
   }
 }
 
+@media only screen and (max-width: 300px){
+
+
+  #header {
+    flex-direction:column-reverse;
+  }
+
+  #searchbar-container{
+    width: 80%;
+  }
+}
+
 
 
